@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`Server error: ${response1.statusText}`);
             }
 
-            if (response1.json().full_response != ""){
+            data = response1.json()
+            if (data.full_response != ""){
                 //save full_response
                 const response3 = await fetch('/show/conversation-save', {
                     method: 'POST',
