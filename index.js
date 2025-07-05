@@ -6,8 +6,7 @@ const port = 3000;
 const methodOverride = require('method-override');
 
 
-// Your chat_client.js is sending the data correctly using fetch with a 'Content-Type': 'application/json' header.
-// However, in your index.js file, you are missing the crucial piece of middleware needed to understand and parse this JSON data.
+// in index.js file, i was missing the crucial piece of middleware needed to understand and parse this JSON data.
 // with bodyParser, ive been parsing html instead
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
