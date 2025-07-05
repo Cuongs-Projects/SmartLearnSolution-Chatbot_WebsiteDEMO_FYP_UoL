@@ -179,3 +179,17 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+SML/course_vector_DB
+
+SML/PADBRC/contents_sources/contents.json
+
+SML/PADBRC/lectures_and_papers
+
+SML/PADBRC/transcribed_contents
+
+SML/PF30DRPP/contents_sources/contents.json
+
+SML/PF30DRPP/lectures_and_papers
+
+SML/PF30DRPP/transcribed_contents

@@ -1,0 +1,141 @@
+/* Define styles */
+.page_header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(171, 171, 171);
+    border: 3px double black;
+    height: 5vh;
+    width: 100%;
+}
+
+.page_header_left {
+    margin-left: 10px;
+}
+
+.page_header_right {
+    margin-right: 10px;
+}
+
+.page_header_right .button_link{
+    border-radius: 5vw 1vw 5vw 1vw;
+}
+
+.button_link {
+    background-color: rgb(0, 0, 0);
+    border: 4px solid black;
+    color: white;
+    /* width : 5vw;
+    height: 5vh; */
+    border-radius: 1vw 5vw 1vw 5vw;
+    padding: 4px;
+    margin: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button_link:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border: 4px solid black;
+    border-radius: 1vw;
+    transform: scale(1.1);
+    padding: 4px;
+    margin: 4px;
+}
+
+.page_title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: underline overline;
+    text-decoration-thickness: 4px;
+}
+
+.page_content {
+    padding-top: 5vh;
+    margin: 2vw 10vw 2vw 10vw;
+}
+
+.content_button_link {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border: 2px solid black;
+    border-radius: 0.5vw;
+    padding: 3px;
+    margin: 3px;
+    cursor: pointer;
+    transition: box-shadow 0.6s ease;
+}
+
+.content_button_link:hover {
+    border-color: transparent;
+    box-shadow: inset 0 0 0 25px black;
+    color: rgb(255, 255, 255);
+}
+
+.likes-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.comments_section {
+    color: #ffffff;
+    border: 2px ridge black;
+    background-color: #7e7e7e;
+    border-radius: 1vw;
+    padding: 1vw;
+}
+
+.each_comments {
+    color: #ffffff;
+    border: 2px dashed rgb(255, 255, 255);
+    background-color: #7e7e7e;
+    border-radius: 1vw;
+    padding: 1vw;
+}
+
+.base_home_content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 50vh;
+}
+
+.base_home_content button{
+    transform: scale(4);
+}
+
+.logout{
+    margin-top: 3vh;
+    margin-left: 1vw;
+    transform: scale(2);
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

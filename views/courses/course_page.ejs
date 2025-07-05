@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  type="text/css" href="/main.css" />
+    <title>Author Home</title>
+</head>
+<body data-course="<%= name %>">
+    <div class="page_header">
+        <div class="page_header_left">
+            <button type="button" class="button_link" onclick="window.location.href='/my-courses'">courses</button>
+        </div>
+        <div class="page_header_middle">
+            <h1 class="header_title"><%= name %> chatbot DEMO</h1>
+        </div>
+        <!-- <div class="page_header_right">
+            <button type="button" class="button_link" onclick="window.location.href='/author/setting'">Author Setting</button>
+        </div> -->
+    </div>
+    <div class="page_content">
+        <h1>Chat with the AI Mentor</h1>
+
+        <!-- This div will hold all the chat messages -->
+        <div id="chat-window"></div>
+
+        <!-- The form to send messages -->
+        <form id="chat-form">
+            <input type="text" id="chat-input" placeholder="Ask a question..." autocomplete="off" required>
+            <button type="submit">Send</button>
+        </form>
+        <button id= "clear-chat" type="clear">Clear Chat</button>
+
+        <!-- Link to your JavaScript file -->
+        <!-- <script src="../../public/js/chat_client.js"></script>
+        <script src="../../public/js/clear_chat.js"></script> -->
+        <script src="/scripts/showdown.min.js"></script>
+        <script src="/js/chat_client.js"></script>
+        <script src="/js/clear_chat.js"></script>
+    </div>
+</body>
+</html>
+<script>
+
+</script>
