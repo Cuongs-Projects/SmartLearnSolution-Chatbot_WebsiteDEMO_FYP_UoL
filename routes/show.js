@@ -36,17 +36,15 @@ router.get("/coursecontent/:courseID",(req, res, next) => {
 });
 
 // const PYTHON_API_URL = 'http://localhost:5001/generate';
-// Inside routes/chat.js
-// It finds a perfect match here!
 router.post("/ask", async (req, res) => {
-    // It receives the 'body' sent by the fetch call.
+    //receives the 'body' sent by the fetch call.
     const userQuestion = req.body.question;
     const courseIdentifier = req.session.current_courseName;
     const full_response = req.body.full_response;
     const prompt_type = req.body.prompt_type;
     const module_name = course_name_dict[req.session.current_courseName];
 
-    // Then it does its job: communicating with the Python API.
+    //communicating with the Python API.
     const response = await axios.post(req.app.locals.PYTHON_API_URL, {
         question: userQuestion,
         collection_name: `smartlearn_${courseIdentifier.toLowerCase()}`,
@@ -55,7 +53,7 @@ router.post("/ask", async (req, res) => {
         module_name: module_name
     });
 
-    // Finally, it sends the answer back to the original sender (the browser's fetch call).
+    //sends the answer back to the original sender (the browser's fetch call).
     res.json({ answer: response.data.answer , prompt_type: response.data.prompt_type, full_response: response.data.full_response});
 });
 

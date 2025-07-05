@@ -1,15 +1,10 @@
-/**
-* index.js
-* This is your main app entry point
-*/
-//npm install express express-validator ejs body-parser method-override mysql sqlite3 sanitize-html
-// Set up express, bodyparser and EJS
+
 const session = require('express-session');
 const express = require('express');
 const app = express();
 const port = 3000;
 const methodOverride = require('method-override');
-// var bodyParser = require("body-parser");
+
 
 // Your chat_client.js is sending the data correctly using fetch with a 'Content-Type': 'application/json' header.
 // However, in your index.js file, you are missing the crucial piece of middleware needed to understand and parse this JSON data.
@@ -42,20 +37,6 @@ app.use(session({
 }));
 app.use(methodOverride('_method'));
 
-// Set up SQLite
-// Items in the global namespace are accessible throught out the node application
-// const sqlite3 = require('sqlite3').verbose();
-//IMPORTANT -- LINKING OF SQLITE TO THE CODE 
-// global.db = new sqlite3.Database('./database.db',function(err){
-//     if(err){
-//         console.error(err);
-//         process.exit(1); // bail out we can't connect to the DB
-//     } else {
-//         console.log("Database connected");
-//         global.db.run("PRAGMA foreign_keys=ON"); // tell SQLite to pay attention to foreign key constraints
-//     }
-// });
-
 // Handle requests to the main home page 
 app.get('/', (req, res) => {
     res.redirect("/my-courses");
@@ -64,12 +45,6 @@ app.get('/', (req, res) => {
 app.get('/my-courses', (req, res) => {
     res.render('mainHome.ejs');
 });
-
-// // Add all the route handlers in usersRoutes to the app under the path /users
-// const authorRoutes = require('./routes/author.js');
-// app.use('/author', authorRoutes);
-// const readerRoutes = require('./routes/reader.js');
-// app.use('/reader', readerRoutes);
 
 const showCoursesRoute = require('./routes/show.js');
 app.use('/show', showCoursesRoute);

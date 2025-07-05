@@ -3,10 +3,10 @@ from prompt_gen_main import PG_SML
 from flask import Flask, request, jsonify
 app = Flask(__name__)
 
-# --- 1. Configuration (should be the SAME as your ingestion script) ---
+
 CHROMA_DB_PATH = "SML/courses_vector_DB"
 # COLLECTION_NAME = "smartlearn_padbrc"
-EMBEDDING_MODEL_NAME = 'all-MiniLM-L6-v2' # Ensure this is THE SAME model used for ingestion
+EMBEDDING_MODEL_NAME = 'all-MiniLM-L6-v2'
 chosen_model = 'qwen3'
 
 print("Initializing models and ChromaDB client...")
@@ -34,7 +34,6 @@ def generate():
         print(f"Error getting collection '{collection_name}': {e}")
         return jsonify({"error": f"Course materials for '{collection_name}' not found."}), 404
     
-    #----the rest of my prompt logic
     if prompt_type == "summ":
         full_response,_ = PG_SML.generate_answer(chosen_model = chosen_model,prompt_type=prompt_type)
  
@@ -60,8 +59,7 @@ def generate():
     print(f"\n--- End of Response --- Total Token Count: {token_len} \n")
     if token_len >= 30000:
         prompt_type = 'summ'
-    
-    #---- end of prompt logic
+
     return jsonify({"answer": answer,"prompt_type":prompt_type,"full_response":full_response})
 
 if __name__ == "__main__":
