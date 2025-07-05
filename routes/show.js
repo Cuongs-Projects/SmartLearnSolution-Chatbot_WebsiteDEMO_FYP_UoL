@@ -32,6 +32,10 @@ router.get("/coursecontent/:courseID",(req, res, next) => {
         req.session.prompt_type = 'init'
     }
     req.session.current_courseName = courseName
+    const full_response = loadFullResponse(userID,courseName);
+    if (full_response != null || full_response != "") {
+        req.session.prompt_type = 'cont'
+    }
     res.render("courses/course_page.ejs", {name: courseName, user: userID});
 });
 
