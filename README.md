@@ -20,3 +20,4 @@ I used the additional sanitize-html packages.
     - follow the instructions at https://www.tutorialspoint.com/sqlite/sqlite_installation.htm 
     - Note that the latest versions of the Mac OS and Linux come with SQLite pre-installed
 
+![Uploading image.png…]()
