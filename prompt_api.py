@@ -3,7 +3,6 @@ from prompt_gen_main import PG_SML
 from flask import Flask, request, jsonify
 app = Flask(__name__)
 
-
 CHROMA_DB_PATH = "SML/courses_vector_DB"
 # COLLECTION_NAME = "smartlearn_padbrc"
 EMBEDDING_MODEL_NAME = 'all-MiniLM-L6-v2'
@@ -25,6 +24,7 @@ def generate():
     prompt_type = data.get('prompt_type')
     full_response = data.get('full_response')
     module_name = data.get("module_name")
+    instructors = data.get("instructors")
     if not question or not collection_name:
         return jsonify({"error": "Missing 'question' or 'collection_name' in request"}), 400
     
@@ -36,30 +36,31 @@ def generate():
     
     if prompt_type == "summ":
         full_response,_ = PG_SML.generate_answer(chosen_model = chosen_model,prompt_type=prompt_type)
+        prompt_type = "cont"
  
     print(f"Question: {question}")
     if prompt_type == 'init':
-        prompt_to_llm = PG_SML.embed_question_and_retrieves (user_question = question,embedding_model = embedding_model,
+        prompt_to_llm = PG_SML.embed_question_and_retrieves (instructors=instructors,user_question = question,embedding_model = embedding_model,
                                                             collection = collection,prompt_type = prompt_type, module_name=module_name)
-        full_response, answer = PG_SML.generate_answer(chosen_model = chosen_model,prompt_type=prompt_type,prompt_to_llm = prompt_to_llm)
+        full_response, answer = PG_SML.generate_answer(user_question = question,chosen_model = chosen_model,prompt_type=prompt_type,prompt_to_llm = prompt_to_llm)
         prompt_type = 'cont'
 
     elif prompt_type == 'cont':
-        prompt_to_llm = PG_SML.embed_question_and_retrieves (user_question = question,embedding_model = embedding_model,
+        prompt_to_llm = PG_SML.embed_question_and_retrieves (instructors=instructors,user_question = question,embedding_model = embedding_model,
                                                             collection = collection,prompt_type = prompt_type,full_response=full_response, module_name=module_name)
-        full_response, answer = PG_SML.generate_answer(chosen_model = chosen_model,prompt_type=prompt_type,prompt_to_llm = prompt_to_llm,full_response_past=full_response)
+        full_response, answer = PG_SML.generate_answer(user_question = question,chosen_model = chosen_model,prompt_type=prompt_type,prompt_to_llm = prompt_to_llm,full_response_past=full_response)
 
-    elif prompt_type == 'summ':
-        prompt_to_llm = PG_SML.embed_question_and_retrieves (user_question = question,embedding_model = embedding_model,
-                                                            collection = collection,prompt_type = prompt_type,full_response=full_response, module_name=module_name)
-        prompt_type = 'cont'
-        full_response, answer = PG_SML.generate_answer(chosen_model = chosen_model,prompt_type=prompt_type,prompt_to_llm = prompt_to_llm,full_response_past=full_response)
+    # elif prompt_type == 'summ':
+    #     prompt_to_llm = PG_SML.embed_question_and_retrieves (user_question = question,embedding_model = embedding_model,
+    #                                                         collection = collection,prompt_type = prompt_type,full_response=full_response, module_name=module_name)
+    #     prompt_type = 'cont'
+    #     full_response, answer = PG_SML.generate_answer(user_question = question,chosen_model = chosen_model,prompt_type=prompt_type,prompt_to_llm = prompt_to_llm,full_response_past=full_response)
             
     token_len = PG_SML.get_string_token_count(full_response = full_response)
     print(f"\n--- End of Response --- Total Token Count: {token_len} \n")
     if token_len >= 30000:
         prompt_type = 'summ'
-
+    
     return jsonify({"answer": answer,"prompt_type":prompt_type,"full_response":full_response})
 
 if __name__ == "__main__":

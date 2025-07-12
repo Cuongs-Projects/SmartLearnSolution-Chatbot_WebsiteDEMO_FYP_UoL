@@ -2,11 +2,6 @@
 
 const dbFile = 'conversations.db';
 
-// Delete the file if it exists
-// if (fs.existsSync(dbFile)) {
-//     fs.unlinkSync(dbFile);
-// }
-
 const Database = require('better-sqlite3');
 const db = new Database(dbFile);
 

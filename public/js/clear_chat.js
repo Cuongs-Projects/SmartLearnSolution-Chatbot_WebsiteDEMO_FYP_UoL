@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // If the server responded with an error status (like 400 or 500)
                 throw new Error(`Server error: ${response1.statusText}`);
             }
-
             const data = await response1.json();
             if (data.full_response != ""){
                 //save full_response

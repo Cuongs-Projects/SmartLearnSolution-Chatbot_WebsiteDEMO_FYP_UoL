@@ -7,21 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chat-input');
     const chatWindow = document.getElementById('chat-window');
 
+    // This is the identifier for the course. You would set this dynamically.
+    // For now, we'll hardcode it. In a real app, this might come from the URL
+    // or be embedded in the page by your EJS template.
+    // const currentCourse = "PADBRC";
+    // const currentCourse = document.body.dataset.course;
+
     // Listen for the form to be submitted
     chatForm.addEventListener('submit', async (event) => {
-        //prevent page refresh
+        // 1. PREVENT THE DEFAULT PAGE REFRESH
         event.preventDefault();
 
-        //user's message from the input field
+        // 2. Get the user's message from the input field
         const userMessage = chatInput.value.trim();
         if (userMessage === '') {
             return; // Don't send empty messages
         }
 
-        //display the user's message in the chat window
+        // 3. Immediately display the user's message in the chat window
         addMessageToChat('You', userMessage);
         
-        //clear the input field and show a "thinking" message
+        // Clear the input field and show a "thinking" message
         chatInput.value = '';
         addMessageToChat('AI', 'Thinking...', true); // 'true' for a temporary message
 
@@ -41,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data1 = await response1.json();
 
-            //send the message to your Node.js backend using Fetch API
+            // 4. Send the message to your Node.js backend using Fetch API
             const response2 = await fetch('/show/ask', {
                 method: 'POST',
                 headers: {
@@ -61,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`Server error: ${response2.statusText}`);
             }
 
-            //get the JSON data from the server's response
+            // 5. Get the JSON data from the server's response
             const data2 = await response2.json();
             const aiMessage = data2.answer;
 
@@ -85,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Remove the "Thinking..." message
             removeTemporaryMessage();
 
-            //display the AI's response in the chat window
+            // 6. Display the AI's response in the chat window
             addMessageToChat('AI', aiMessage);
 
         } catch (error) {
@@ -96,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /**
+     * Helper function to add a message to the chat window
      * @param {string} sender - Who sent the message ('You' or 'AI')
      * @param {string} text - The content of the message
      * @param {boolean} isTemporary - If true, adds a special class for removal
@@ -118,10 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         chatWindow.appendChild(messageElement);
-        //automatically scroll to the bottom to see the new message
+        // Automatically scroll to the bottom to see the new message
         chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 
+    /**
+     * Helper function to remove the "Thinking..." message
+     */
     function removeTemporaryMessage() {
         const tempMessage = chatWindow.querySelector('.temporary-message');
         if (tempMessage) {
