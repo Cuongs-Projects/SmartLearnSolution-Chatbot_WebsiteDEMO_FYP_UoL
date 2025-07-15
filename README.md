@@ -24,6 +24,8 @@ I used the additional sanitize-html packages.
 * Sqlite3 
     - follow the instructions at https://www.tutorialspoint.com/sqlite/sqlite_installation.htm 
     - Note that the latest versions of the Mac OS and Linux come with SQLite pre-installed
+  
+<img width="599" height="183" alt="image" src="https://github.com/user-attachments/assets/7a078468-72e3-4215-a6dc-1f2d03092d14" />
 
 ![image](https://github.com/user-attachments/assets/f58e02a0-4743-4548-a033-245a0868f36f)
 
