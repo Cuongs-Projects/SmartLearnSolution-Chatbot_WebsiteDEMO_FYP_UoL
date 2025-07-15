@@ -2,6 +2,9 @@
 
 #### Setup requirements ####
 TLDR:
+For the Python scripts, youll need:
+
+
 I used the additional sanitize-html packages.
 - Run ```npm init```
 - Run ```npm install --save express express-validator ejs body-parser method-override mysql sqlite3 sanitize-html better-sqlite3 showdown```
