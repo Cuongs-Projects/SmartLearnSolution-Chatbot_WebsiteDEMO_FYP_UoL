@@ -3,6 +3,8 @@
 #### Setup requirements ####
 TLDR:
 For the Python scripts, youll need:
+- ipsum
+- 
 
 
 I used the additional sanitize-html packages.
