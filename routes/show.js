@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const sanitizeHtml = require('sanitize-html');
-const sanitizedOptions = {
-    allowedTags: [], //allows no html tags
-    allowedAttributes: {} //allows no attributes
-};
+// const sanitizeHtml = require('sanitize-html');
+// const sanitizedOptions = {
+//     allowedTags: [], //allows no html tags
+//     allowedAttributes: {} //allows no attributes
+// };
 
 const axios = require('axios');
 
@@ -23,10 +23,16 @@ const course_instructors_dict = {
 const saveFullResponse = require('../public/js/saveConvo.js');
 const loadFullResponse = require('../public/js/retrieveConvo.js');
 
-router.get("/coursecontent/:courseID",(req, res, next) => {
+function isLoggedIn(req, res, next){
     if (!req.session.userID) {
-        req.session.userID = 'abc123'
+        req.session.redirectTo = req.originalUrl;
+        res.redirect("/login");
+    }else{
+        next();
     }
+}
+
+router.get("/coursecontent/:courseID",isLoggedIn,(req, res, next) => {
     const userID = req.session.userID;
     const courseID= req.params.courseID;
     const courseName = course_dict[courseID]
@@ -41,8 +47,7 @@ router.get("/coursecontent/:courseID",(req, res, next) => {
     res.render("courses/course_page.ejs", {name: courseName, user: userID});
 });
 
-// const PYTHON_API_URL = 'http://localhost:5001/generate';
-router.post("/ask", async (req, res) => {
+router.post("/ask",isLoggedIn, async (req, res) => {
     //receives the 'body' sent by the fetch call.
     const userQuestion = req.body.question;
     const courseIdentifier = req.session.current_courseName;
@@ -67,7 +72,7 @@ router.post("/ask", async (req, res) => {
                full_response: response.data.full_response});
 });
 
-router.get('/conversation-get', (req, res) => {
+router.get('/conversation-get',isLoggedIn, (req, res) => {
     const userID = req.session.userID;
     const courseName = req.session.current_courseName;
     let full_response = loadFullResponse(userID,courseName);
@@ -77,7 +82,7 @@ router.get('/conversation-get', (req, res) => {
     res.json({ full_response: full_response, prompt_type: req.session.prompt_type});
 });
 
-router.post('/conversation-save', (req, res) => {
+router.post('/conversation-save',isLoggedIn, (req, res) => {
     const userID = req.session.userID;
     const courseName = req.session.current_courseName;
     const full_response = req.body.full_response;

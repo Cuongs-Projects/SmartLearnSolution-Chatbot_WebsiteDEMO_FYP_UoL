@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  type="text/css" href="/main.css" />
+    <title>Login User</title>
+</head>
+<body>
+    <div class="page_header">
+        <div class="page_header_left">
+            <button type="button" class="button_link" onclick="window.location.href='/'">Base Home</button>
+        </div>
+        <div class="page_header_middle">
+            <h1 class="header_title">SML Login Page</h1>
+        </div>
+        <div class="page_header_right">
+            
+        </div>
+    </div>
+    <div class="page_content">
+        <h1 class="page_title">Login</h1>
+        <form action="/logging_in" method="POST">
+            <p>Username: </p><input id="username" type="text" name="username" placeholder="Username" required/>
+            <p>Password: </p><input id="password" type="text" name="password" placeholder="Password" required/>
+            <input type="submit" class="content_button_link" value="Login" />
+        </form>
+        <br>
+        <!-- <p>Want to post articles? Register below</p>
+        <form action="/author/register" method="GET">
+            <input type="submit" class="content_button_link" value="Register" />
+        </form> -->
+    </div>
+</body>
+</html>

@@ -1,49 +1,78 @@
-
 const session = require('express-session');
 const express = require('express');
 const app = express();
 const port = 3000;
 const methodOverride = require('method-override');
+// var bodyParser = require("body-parser");
+const sanitizeHtml = require('sanitize-html');
+const sanitizedOptions = {
+    allowedTags: [],
+    allowedAttributes: {}
+};
 
 
-// in index.js file, i was missing the crucial piece of middleware needed to understand and parse this JSON data.
-// with bodyParser, ive been parsing html instead
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
-app.set('view engine', 'ejs'); // set the app to use ejs for rendering
-app.use(express.static(__dirname + '/public')); // set location of static files
+app.set('view engine', 'ejs'); 
+app.use(express.static(__dirname + '/public')); 
 
 app.use('/scripts',express.static(__dirname+'/node_modules/showdown/dist/'));
-//to access showdown markdown-to-html format converter
 
-//Placing properties inside the session configuration object does not add them to every req.session object. 
-// It's just configuration for the session middleware itself. req.session is empty for each new user until you 
-// explicitly add properties to it.
 app.locals.PYTHON_API_URL = 'http://localhost:5001/generate';
 app.use(session({
     secret: 'secret',
     resave: false,
     saveUninitialized: true,
     cookie:{
-        //technically set as false, since the website is running on local host and not HTTPS
-        //therefore, cookie or any necessary details to be saved would not be saved if I set 'secure' as true
         secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 7
     },
-    // PYTHON_API_URL: 'http://localhost:5001/generate',
-    //userID: "abc123" //since no login system, this will do
 }));
 app.use(methodOverride('_method'));
 
-// Handle requests to the main home page 
-app.get('/', (req, res) => {
+
+function isLoggedIn(req, res, next){
+    if (!req.session.userID) {
+        req.session.redirectTo = req.originalUrl;
+        res.redirect("/login");
+    }else{
+        next();
+    }
+}
+
+app.get("/login", (req, res, next) => {
+    res.render("student/login.ejs");
+});
+
+//to handle the login process
+//an extremely simple hard coded login for demo
+app.post("/logging_in",(req, res, next) => {
+    const presanitizedusername = req.body.username;
+    const presanitizedpassword = req.body.password;
+    const username = sanitizeHtml(presanitizedusername, sanitizedOptions);
+    const password = sanitizeHtml(presanitizedpassword, sanitizedOptions);
+    //The user's password would be encrypted and stored in a database.
+    // The proper implementation would be retrieving the encrypted text, 
+        // decrypt, compare, and provide the userID for the chatbot 
+    if (username == "admin" && password == "admin"){
+        req.session.userID = 'abc123'
+        const redirectTo = req.session.redirectTo || "/";
+        res.redirect(redirectTo)
+    }else{
+        let script = `<script>alert("Incorrect password"); window.history.back();</script>`;
+        res.send(script);
+    }
+});
+
+app.get('/',(req, res) => {
     res.redirect("/my-courses");
 });
 
-app.get('/my-courses', (req, res) => {
+app.get('/my-courses',isLoggedIn,(req, res) => {
     res.render('mainHome.ejs');
 });
+
 
 const showCoursesRoute = require('./routes/show.js');
 app.use('/show', showCoursesRoute);
