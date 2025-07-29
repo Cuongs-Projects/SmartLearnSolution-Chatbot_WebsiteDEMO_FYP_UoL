@@ -20,8 +20,8 @@ const course_instructors_dict = {
     "PADBRC":"Dr. Ngô Mai and Dr. Nghĩa Trần",
     "PF30DRPP":"Dr. Ngô Mai and Dr. Nghĩa Trần"
 }
-const saveFullResponse = require('../public/js/saveConvo.js');
-const loadFullResponse = require('../public/js/retrieveConvo.js');
+const saveFullResponse = require('./saveConvo');
+const loadFullResponse = require('./retrieveConvo');
 
 function isLoggedIn(req, res, next){
     if (!req.session.userID) {
