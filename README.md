@@ -104,19 +104,21 @@ What you need:
 
 # Steps: #
 
-1. Copy the project
+# 1. Copy the project # 
 
-2. Install Python Tools:
+# 2. Install Python Tools: #
 
 python -m venv venv
+
 On Linux/macOS:
 source venv/bin/activate
+
 On Windows:
 venv\Scripts\activate
 
 pip install -r requirements.txt
 
-3. Install Node.js Tools:
+# 3. Install Node.js Tools: #
 
 npm install
 
@@ -126,7 +128,7 @@ I used the additional sanitize-html packages.
 npm init
 npm install --save express express-validator ejs body-parser method-override mysql sqlite3 sanitize-html better-sqlite3 showdown
 
-4. Start the AI Helper (Python part):
+# 4. Start the AI Helper (Python part): #
 Open a new terminal or command prompt, go to the folder where prompt_api.py is, and start it.
 
 # (If your virtual environment isn't active) source venv/bin/activate
@@ -135,7 +137,7 @@ python prompt_api.py
 
 The AI helper will usually start at http://0.0.0.0:5001.
 
-5. Start the Web App (Node.js part):
+# 5. Start the Web App (Node.js part): #
 Open another new terminal or command prompt, go to the main project folder (where package.json is).
 node index.js
 
