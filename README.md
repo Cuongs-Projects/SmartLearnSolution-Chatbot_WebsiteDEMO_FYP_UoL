@@ -1,6 +1,6 @@
 ### CM3070 Computer Science Final Project ###
 
-##AI Chatbot Mentor##
+## AI Chatbot Mentor ##
 
 This is an early version of an AI Mentor Chatbot. It's an intelligent helper made to give smart, reliable support to students using the smartlearnsolution.com.au website. The project uses a special method to find and use facts (called Retrieval-Augmented Generation, or RAG) and a system that handles different types of information, all built into a three-part web application.
 
@@ -13,7 +13,7 @@ This is an early version of an AI Mentor Chatbot. It's an intelligent helper mad
 [Watch the project demonstration video](fyp_presenationvideo_2025.mp4)
 
 Main Features & What It Does:
-1. System for Bringing in Course Information
+# 1. System for Bringing in Course Information #
 
 Handles All Kinds of Content: Takes in various course materials, like video lessons, written documents (PDFs), and pictures (PNGs).
 
@@ -23,7 +23,7 @@ Organised Knowledge: Turns all the processed information into a standard, easy-t
 
 Computer-Friendly Storage: Turns bits of text into a special format for computers (called vector embeddings), which are then kept in a database called ChromaDB.
 
-2. Smart Answer System (RAG)
+# 2. Smart Answer System (RAG) #
 
 Answers Based on Facts: Puts together a smart language model (LLM) with real, checked facts from the course materials.
 
@@ -33,7 +33,7 @@ Stops Making Things Up: The AI's answers always stick to the facts it finds, mak
 
 Acts Like a Mentor: We've used a clever way to tell the AI how to behave, so its answers are friendly, helpful, and patient, just like a good teacher.
 
-3. Three-Part Web Application
+# 3. Three-Part Web Application #
 
 Clear Parts: The system is clearly split into three main parts: what users see (the front-end, made with Node.js/EJS), the web server that keeps track of things (Node.js/Express), and a separate AI helper (Flask/Python).
 
@@ -41,55 +41,55 @@ Easy-to-use Chat Screen: Features a special chat page where you can talk to the 
 
 Smooth Talking: Uses a smart way for the different parts of the system to communicate quickly and without delays.
 
-4. Remembers Past Chats
+# 4. Remembers Past Chats #
 
 Keeps Track of Your Talk: The chatbot remembers what you've talked about, even if you refresh the page or come back later.
 
 Separate Chats for Each User and Course: Your chat history is saved in a database (SQLite). Each chat is found using a unique code for you and the course, so your conversations stay separate and correct.
 
-5. Can Handle More Courses
+# 5. Can Handle More Courses #
 
 Can Grow Easily: The system is set up so it's simple to add and look after new courses.
 
 Switches Course Information Automatically: The chatbot automatically brings in the right AI information and facts for each course, depending on which course page you're on.
 
 What's Used to Make It Work:
-Backend (Python)
-
-Flask: A simple framework for the AI helper part.
-
-OpenAI Whisper: For turning speech into text.
-
-pytesseract: A tool to get text from images.
-
-chromadb: A database for storing special computer-friendly text data.
-
-Qwen3 (or similar): The main AI language model.
-
-langchain: A tool to build AI applications.
-
-sentence-transformers: For turning text into computer-readable formats.
-
-numpy, torch, transformers: Key tools for machine learning.
-
-sqlite3: For simple database storage.
-
-Frontend & Web Server (Node.js/JavaScript)
-
-Node.js: Runs the JavaScript code.
-
-Express: Helps build the web application.
-
-EJS: Used to create the web pages.
-
-better-sqlite3: A fast tool for using SQLite databases with Node.js.
-
-Axios: For sending and receiving information over the internet.
-
-showdown: Converts special text (Markdown) into web page format (HTML).
-
-express-session: Helps manage user sessions on the website.
-
+- Backend (Python)
+  
+    + Flask: A simple framework for the AI helper part.
+      
+    + OpenAI Whisper: For turning speech into text.
+      
+    + pytesseract: A tool to get text from images.
+      
+    + chromadb: A database for storing special computer-friendly text data.
+      
+    + Qwen3 (or similar): The main AI language model.
+      
+    + langchain: A tool to build AI applications.
+      
+    + sentence-transformers: For turning text into computer-readable formats.
+      
+    + numpy, torch, transformers: Key tools for machine learning.
+      
+    + sqlite3: For simple database storage.
+      
+- Frontend & Web Server (Node.js/JavaScript)
+  
+    + Node.js: Runs the JavaScript code.
+      
+    + Express: Helps build the web application.
+      
+    + EJS: Used to create the web pages.
+      
+    + better-sqlite3: A fast tool for using SQLite databases with Node.js.
+      
+    + Axios: For sending and receiving information over the internet.
+      
+    + showdown: Converts special text (Markdown) into web page format (HTML).
+      
+    + express-session: Helps manage user sessions on the website.
+      
 ---
 
 How to Set Up and Run the Project:
@@ -109,9 +109,9 @@ Steps:
 2. Install Python Tools:
 
 python -m venv venv
-# On Linux/macOS:
+On Linux/macOS:
 source venv/bin/activate
-# On Windows:
+On Windows:
 venv\Scripts\activate
 
 pip install -r requirements.txt
