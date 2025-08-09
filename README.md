@@ -96,13 +96,13 @@ How to Set Up and Run the Project:
 
 What you need:
 
-Python 3 or newer
+- Python 3 or newer
 
-Node.js (version 16 or newer) & npm (version 8 or newer)
+- Node.js (version 16 or newer) & npm (version 8 or newer)
 
-Git
+- Git
 
-Steps:
+# Steps: #
 
 1. Copy the project
 
