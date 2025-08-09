@@ -131,8 +131,7 @@ npm install --save express express-validator ejs body-parser method-override mys
 # 4. Start the AI Helper (Python part): #
 Open a new terminal or command prompt, go to the folder where prompt_api.py is, and start it.
 
-# (If your virtual environment isn't active) source venv/bin/activate
-cd SML/ # Or wherever your Python AI helper code is
+(If your virtual environment isn't active) source venv/bin/activate
 python prompt_api.py
 
 The AI helper will usually start at http://0.0.0.0:5001.
