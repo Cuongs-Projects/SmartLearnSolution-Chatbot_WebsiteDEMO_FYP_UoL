@@ -12,7 +12,8 @@ This is an early version of an AI Mentor Chatbot. It's an intelligent helper mad
 
 [Watch the project demonstration video](fyp_presenationvideo_2025.mp4)
 
-Main Features & What It Does:
+## Main Features & What It Does: ##
+
 # 1. System for Bringing in Course Information #
 
 Handles All Kinds of Content: Takes in various course materials, like video lessons, written documents (PDFs), and pictures (PNGs).
@@ -53,7 +54,7 @@ Can Grow Easily: The system is set up so it's simple to add and look after new c
 
 Switches Course Information Automatically: The chatbot automatically brings in the right AI information and facts for each course, depending on which course page you're on.
 
-What's Used to Make It Work:
+## What's Used to Make It Work: ##
 - Backend (Python)
   
     + Flask: A simple framework for the AI helper part.
@@ -92,7 +93,7 @@ What's Used to Make It Work:
       
 ---
 
-How to Set Up and Run the Project:
+## How to Set Up and Run the Project: ##
 
 What you need:
 
