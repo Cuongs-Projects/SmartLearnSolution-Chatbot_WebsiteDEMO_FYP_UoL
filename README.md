@@ -10,7 +10,7 @@ This is an early version of an AI Mentor Chatbot. It's an intelligent helper mad
 
 <img width="1016" height="860" alt="image" src="https://github.com/user-attachments/assets/863087a0-e533-4511-b6d4-eb979b40767e" />
 
-![Watch the project demonstration video](https://youtu.be/IZLmP6DjqAc)
+Watch the project demonstration video [here](https://youtu.be/IZLmP6DjqAc).
 
 ## Main Features & What It Does: ##
 
